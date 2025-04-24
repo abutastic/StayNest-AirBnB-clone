@@ -1,0 +1,100 @@
+<% layout("/layouts/boilerplate") %>
+
+<div id="filters">
+  <a href="/listings?category=trending" class="filter">
+    <div><i class="fa-solid fa-fire"></i></div>
+    <p>Trending</p>
+  </a>
+
+  <a href="/listings?category=rooms" class="filter">
+    <div><i class="fa-solid fa-bed"></i></div>
+    <p>Rooms</p>
+  </a>
+
+  <a href="/listings?category=iconic city" class="filter">
+    <div><i class="fa-solid fa-mountain-city"></i></div>
+    <p>Iconic city</p>
+  </a>
+
+  <a href="/listings?category=mountains" class="filter">
+    <div><i class="fa-solid fa-mountain"></i></div>
+    <p>Mountains</p>
+  </a>
+
+  <a href="/listings?category=castles" class="filter">
+    <div><i class="fa-regular fa-chess-rook"></i></div>
+    <p>Castles</p>
+  </a>
+
+  <a href="/listings?category=amazing pools" class="filter">
+    <div><i class="fa-solid fa-water-ladder"></i></div>
+    <p>Amazin pools</p>
+  </a>
+
+  <a href="/listings?category=camping" class="filter">
+    <div><i class="fa-solid fa-campground"></i></div>
+    <p>Camping</p>
+  </a>
+
+  <a href="/listings?category=farms" class="filter">
+    <div><i class="fa-solid fa-cow"></i></div>
+    <p>Farms</p>
+  </a>
+
+  <a href="/listings?category=arctic" class="filter">
+    <div><i class="fa-solid fa-snowman"></i></div>
+    <p>Arctic</p>
+  </a>
+
+  <a href="/listings?category=igloo" class="filter">
+    <div><i class="fa-solid fa-igloo"></i></div>
+    <p>Igloo</p>
+  </a>
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="switchCheckDefault"
+      />
+      <label class="form-check-label" for="switchCheckDefault"
+        >Display total after taxes</label
+      >
+    </div>
+  </div>
+</div>
+
+<% if(allListings.length === 0) {%>
+<div class="alert alert-warning text-center mt-5" role="alert">
+  <h4>
+    <i class="fa-solid fa-triangle-exclamation me-2"></i>No listings found.
+  </h4>
+  <p class="mt-2">Try adjusting your search or filters.</p>
+</div>
+<% } else { %>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+  <% for(let listing of allListings){ %>
+  <a href="/listings/<%= listing._id %>" class="lis-li">
+    <div class="card col listing-card">
+      <img
+        src="<%= listing.image.url %>"
+        class="card-img-top"
+        alt="listing_img"
+        style="height: 20rem"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <b><%= listing.title %></b>
+          <br />
+          &#8377; <%= (listing.price || 0).toLocaleString("en-IN") %> / night
+          &nbsp; &nbsp;<i class="tax">+18% GST</i>
+        </p>
+      </div>
+    </div>
+  </a>
+  <% } %>
+</div>
+<% } %>
