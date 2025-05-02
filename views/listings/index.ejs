@@ -1,5 +1,8 @@
 <% layout("/layouts/boilerplate") %>
 
+<button class="filter-toggle-btn" id="filterToggle">
+  <i class="fa-solid fa-sliders"></i> Filters
+</button>
 <div id="filters">
   <a href="/listings?category=trending" class="filter">
     <div><i class="fa-solid fa-fire"></i></div>
@@ -98,3 +101,12 @@
   <% } %>
 </div>
 <% } %>
+<script>
+  document
+    .getElementById("filterToggle")
+    .addEventListener("click", function () {
+      const filters = document.getElementById("filters");
+      filters.classList.toggle("active");
+      this.classList.toggle("active");
+    });
+</script>
