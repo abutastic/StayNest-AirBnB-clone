@@ -65,6 +65,7 @@ const sessionOptions = {
   store: store,
 };
 
+// every request should go through session and flash messages
 app.use(session(sessionOptions));
 app.use(flash());
 
